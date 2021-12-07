@@ -19,21 +19,16 @@ properCaseBtn.addEventListener("click", () => {
 });
 
 sentenceCaseBtn.addEventListener("click", () => {
-  //make the first letter of each sentence capitalized
-
-  const text = textArea.value.trim();
-  const sentences = text.split(/[.!?]/);
-  const newSentences = sentences.map((sentence) => {
-    const firstLetter = sentence.charAt(0).toUpperCase();
-    const restOfSentence = sentence.slice(1);
-    if (firstLetter == ' " ') {
-      return (
-        firstLetter +
-        restOfSentence.charAt(0).toUpperCase() +
-        restOfSentence.slice(1)
-      );
-    }
-    return firstLetter + restOfSentence;
+  const text = textArea.value.split(".");
+  const emptyArray = [];
+  text.forEach((sentence) => {
+    //regex to match the first letter [a-z A-Z]
+    const lowerCaseSentence = sentence.toLowerCase();
+    const s = lowerCaseSentence.replace(/[a-zA-Z]/, (letter) =>
+      letter.toUpperCase()
+    );
+    emptyArray.push(s);
   });
-  textArea.value = newSentences.join(".");
+
+  textArea.value = emptyArray.join(".");
 });
