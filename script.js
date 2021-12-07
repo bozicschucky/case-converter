@@ -3,6 +3,7 @@ const lowerCaseBtn = document.getElementById("lower-case");
 const textArea = document.getElementById("input-text");
 const properCaseBtn = document.getElementById("proper-case");
 const sentenceCaseBtn = document.getElementById("sentence-case");
+const saveTextBtn = document.getElementById("save-text-file");
 
 upperCaseBtn.addEventListener("click", () => {
   textArea.value = textArea.value.toUpperCase();
@@ -31,4 +32,14 @@ sentenceCaseBtn.addEventListener("click", () => {
   });
 
   textArea.value = emptyArray.join(".");
+});
+
+saveTextBtn.addEventListener("click", () => {
+  const text = textArea.value;
+  const blob = new Blob([text], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.download = "text.txt";
+  link.href = url;
+  link.click();
 });
